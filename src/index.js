@@ -54,7 +54,7 @@ app.post('/sub', (req, res)=>{
         }
         res.send(result);
         return;
-    }else if(diff>-1000000){
+    }else if(diff<-1000000){
         const result={
             status:"error",
             message:"Underflow"
