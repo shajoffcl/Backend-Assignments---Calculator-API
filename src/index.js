@@ -19,10 +19,18 @@ app.get('/', (req, res)=>{
 app.post('/add', (req,res)=>{
     let num1=req.body.num1;
     let num2=req.body.num2;
+    let sum=num1+num2;
     if(typeof num1==="string" || typeof num2==="string"){
         const result={
             status:"error",
             message:"Invalid data types"
+        }
+        res.send(result);
+        return;
+    }else if(sum>1000000){
+        const result={
+            status:"error",
+            message:"Overflow"
         }
         res.send(result);
         return;
@@ -30,7 +38,7 @@ app.post('/add', (req,res)=>{
     const result={
         status:"success",
         message:"the sum of given two numbers",
-        sum:num1+num2
+        sum:sum
     }
     res.send(result);
 });
@@ -38,10 +46,18 @@ app.post('/add', (req,res)=>{
 app.post('/sub', (req, res)=>{
     let num1=req.body.num1;
     let num2=req.body.num2;
+    let diff=num1-num2;
     if(typeof num1==="string" || typeof num2==="string"){
         const result={
             status:"error",
             message:"Invalid data types"
+        }
+        res.send(result);
+        return;
+    }else if(diff>-1000000){
+        const result={
+            status:"error",
+            message:"Underflow"
         }
         res.send(result);
         return;
@@ -49,7 +65,7 @@ app.post('/sub', (req, res)=>{
     const response={
         status: "success",
         message: "the difference of given two numbers",
-        difference: num1-num2
+        difference: diff
     }
     res.send(response);
 });
@@ -57,6 +73,7 @@ app.post('/sub', (req, res)=>{
 app.post('/multiply', (req, res)=>{
     let num1=req.body.num1;
     let num2=req.body.num2;
+    let mul=num1*num2;
     if(typeof num1==="string" || typeof num2==="string"){
         const result={
             status:"error",
@@ -64,11 +81,18 @@ app.post('/multiply', (req, res)=>{
         }
         res.send(result);
         return;
+    }else if(mul>1000000){
+        const result={
+            status:"error",
+            message:"Overflow"
+        }
+        res.send(result);
+        return;
     }
     const response={
         status: "success",
         message: "The product of given numbers",
-        result: num1*num2
+        result: mul
     }
     res.send(response);
 });
