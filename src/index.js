@@ -83,6 +83,13 @@ app.post('/divide', (req, res)=>{
         }
         res.send(result);
         return;
+    }else if(num2===0){
+        const result={
+            status:"error",
+            message:"Cannot divide by zero"
+        }
+        res.send(result);
+        return;
     }
     const response={
         status: "success",
