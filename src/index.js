@@ -73,6 +73,25 @@ app.post('/multiply', (req, res)=>{
     res.send(response);
 });
 
+app.post('/divide', (req, res)=>{
+    let num1=req.body.num1;
+    let num2=req.body.num2;
+    if(typeof num1==="string" || typeof num2==="string"){
+        const result={
+            status:"error",
+            message:"Invalid data types"
+        }
+        res.send(result);
+        return;
+    }
+    const response={
+        status: "success",
+        message: "The division of given numbers",
+        result: num1/num2
+    }
+    res.send(response);
+})
+
 app.listen(port, () => console.log(`App listening on port ${port}!`));
 
 module.exports = app;
